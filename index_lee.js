@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
+const cors = require('cors');
 const { append } = require('express/lib/response')
 
 const PATH_FILE = path.join(__dirname, 'data', 'CPdescarga.txt')
@@ -10,6 +11,9 @@ const PORT = 3001
 
 const app = express()
 
+app.use(cors({
+    origin: '*'
+}));
 
 const removeAccents = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
